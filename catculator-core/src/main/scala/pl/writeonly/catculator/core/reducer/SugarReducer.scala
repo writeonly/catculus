@@ -12,7 +12,8 @@ import spire.math.Natural.End
 import spire.math.*
 
 object SugarReducer {
-  val haskellSugarReducer: SugarReducer = SugarReducer(LambdaConfig.haskellConfig)
+  val haskellSugarReducer: SugarReducer =
+    SugarReducer(LambdaConfig.haskellConfig)
   val lambdaSugarReducer: SugarReducer = SugarReducer(LambdaConfig.lambdaConfig)
 }
 

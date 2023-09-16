@@ -7,7 +7,8 @@ import pl.writeonly.catculator.core.adt.calculus.*
 import scala.language.postfixOps
 
 object FunctionReducer {
-  val haskellFunctionReducer: FunctionReducer = FunctionReducer(LambdaConfig.haskellConfig)
+  val haskellFunctionReducer: FunctionReducer =
+    FunctionReducer(LambdaConfig.haskellConfig)
 }
 
 class FunctionReducer(config: LambdaConfig) {

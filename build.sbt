@@ -108,6 +108,7 @@ lazy val udash =
       ScalaJSPlugin,
       JSDependenciesPlugin,
     )
+    .enablePlugins(ScalaJSPlugin, JSDependenciesPlugin)
     .dependsOn(core)
     .settings(
       mainClass := Some("pl.writeonly.catculus.udash.Main"),
@@ -115,6 +116,12 @@ lazy val udash =
 
       libraryDependencies ++= Dependencies.uDashDeps.value,
       jsDependencies ++= Dependencies.uDashJSDeps.value,
+
+      // Target files for Scala.js plugin
+//      Compile / fastOptJS / artifactPath := udashAssetsDir / "minimal.js",
+//      Compile / fullOptJS / artifactPath := udashAssetsDir / "minimal.js",
+//      Compile / packageJSDependencies / artifactPath := udashAssetsDir / "minimal-deps.js",
+//      Compile / packageMinifiedJSDependencies / artifactPath := udashAssetsDir / "minimal-deps.js",
     )
 
 
@@ -129,6 +136,12 @@ val root =
 
 addCommandAlias("scalafixWTF", "scalafixEnable; scalafixAll")
 addCommandAlias("scalafmtWTF", "scalafmtSbt; scalafmtAll")
+addCommandAlias("compileAll", "clean; compile; Test/compile; test")
+
+addCommandAlias("compileAll", "clean; compile; Test/compile; test; doc")
+
+addCommandAlias("coreAll", "scalafixWTF; scalafmtAll; compileAll")
+
 addCommandAlias("scalaAll", "scalafixWTF; scalafmtAll")
 
 addCommandAlias("compileAll", "clean; compile; Test/compile; test")
@@ -137,6 +150,10 @@ addCommandAlias("coreAll", "scalaAll; compileAll; doc")
 addCommandAlias("udashAll", "udash/fastOptJS; udash/fullOptJS")
 addCommandAlias("coverageAll", "coverage; coreJVM/test; coverageReport")
 addCommandAlias("fastAll", "scalaAll; coverageAll")
+
+addCommandAlias("udashAll", "udashJS/fastOptJS; udashJS/fullOptJS")
+addCommandAlias("coverageAll", "coverage; coreJVM/test; coverageReport")
+
 addCommandAlias("pageAll", "udashAll; coverageAll")
 
 addCommandAlias("all", "coreAll; pageAll")
