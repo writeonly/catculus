@@ -4,7 +4,15 @@ import mouse.all.anySyntaxMouse
 import org.scalatest.prop._
 import pl.writeonly.catculator.core.LambdaConfig._
 import pl.writeonly.catculator.core.TableDrivenPropertySpec
+import pl.writeonly.catculator.core.adt.calculus.Combinator.I
 import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.tree.BinaryTree.Leaf
+import pl.writeonly.catculator.core.calculators.lazyk.ADT
+import pl.writeonly.catculator.core.calculators.lazyk.ADT.ADTBT
+import pl.writeonly.catculator.core.calculators.lazyk.ADT.fromCombinatorBT
+import pl.writeonly.catculator.core.calculators.lazyk.Calculator
+import pl.writeonly.catculator.core.calculators.lazyk.Evaluator
 import pl.writeonly.catculator.core.generators.HaskellGenerator
 import pl.writeonly.catculator.core.parsers.HaskellParser
 import pl.writeonly.catculator.core.reducers.AbstractionReducer.reduceAbstraction
