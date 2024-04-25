@@ -8,3 +8,6 @@ hs_err_pid*
 .bsp
 target
 assets
+
+.metals
+.vscode
