@@ -46,6 +46,16 @@ val coreNativeSettings = Seq(
   ),
 )
 
+lazy val http4sSettings = Seq(
+  name := "catculator",
+  moduleName := "catculator-http4s",
+  libraryDependencies ++= Dependencies.catsDeps.value,
+  libraryDependencies ++= Dependencies.catsEffectDeps.value,
+  libraryDependencies ++= Dependencies.http4sDeps.value,
+  libraryDependencies ++= Dependencies.circle.value,
+  libraryDependencies ++= Dependencies.munitDeps.value,
+)
+
 val core =
   crossProject(NativePlatform, JSPlatform, JVMPlatform)
     .crossType(CrossType.Pure)
@@ -54,6 +64,20 @@ val core =
     .jvmSettings(coreJvmSettings)
     .jsSettings(coreJsSettings)
     .nativeSettings(coreNativeSettings)
+
+val http4s =
+  crossProject(NativePlatform, JSPlatform, JVMPlatform)
+    .crossType(CrossType.Pure)
+    .in(file("catculator-http4s"))
+    .aggregate(core)
+    .settings(http4sSettings)
+    .jvmSettings(coreJvmSettings)
+    .jsSettings(coreJsSettings)
+    .nativeSettings(coreNativeSettings)
+    .settings(
+      mainClass := Some("pl.writeonly.catculator.http4s.Main"),
+      Compile / run / fork := true,
+    )
 
 lazy val udash =
   crossProject(JSPlatform)
@@ -96,3 +120,4 @@ addCommandAlias("fastAll", "scalaAll; coverageAll")
 addCommandAlias("pageAll", "udashAll; coverageAll")
 
 addCommandAlias("all", "coreAll; pageAll")
+

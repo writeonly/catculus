@@ -10,6 +10,8 @@ object Dependencies {
   private val catsEffectVersion = "3.5.1"
   private val catsMtlVersion = "1.3.1"
   private val fs2Version = "3.8.0"
+  private val http4sVersion = "0.23.26"
+  private val circeVersion = "0.14.1"
   private val jawnVersion = "1.5.1"
   private val scalaTestVersion = "3.2.16"
   private val spec2Version = "4.19.2"
@@ -37,6 +39,18 @@ object Dependencies {
     "co.fs2" %%% "fs2-scodec" % fs2Version,
     "co.fs2" %%% "fs2-io" % fs2Version,
   ))
+
+  val http4sDeps = Def.setting(Seq(
+    "org.http4s" %% "http4s-ember-client" % http4sVersion,
+    "org.http4s" %% "http4s-ember-server" % http4sVersion,
+    "org.http4s" %% "http4s-dsl"          % http4sVersion,
+    "org.http4s" %% "http4s-circe"        % http4sVersion,
+  ))
+  val circle = Def.setting(Seq(
+    "io.circe" %% "circe-core",
+    "io.circe" %% "circe-generic",
+    "io.circe" %% "circe-parser"
+  ).map(_ % circeVersion))
   val jawnDeps = Def.setting(Seq(
     "org.typelevel" %%% "jawn-parser" % jawnVersion,
     "org.typelevel" %%% "jawn-ast" % jawnVersion,
@@ -50,8 +64,9 @@ object Dependencies {
     "org.specs2" %%% "specs2-scalacheck" % spec2Version % Test,
   ))
   val munitDeps = Def.setting(Seq(
-    "org.scalameta" %%% "munit" % "1.0.0" % Test,
+    "org.scalameta" %%% "munit" % "0.7.29" % Test,
     "org.scalameta" %%% "munit-scalacheck" % "0.7.29" % Test,
+    "org.typelevel" %%% "munit-cats-effect-3" % "1.0.7" % Test,
   ))
   val disciplineDeps = Def.setting(Seq(
     "org.typelevel" %%% "discipline-core" % "1.5.1",
@@ -68,6 +83,7 @@ object Dependencies {
     "org.typelevel" %%% "log4cats-core" % "2.6.0",
     "org.scalacheck" %%% "scalacheck" % "1.17.0" % Test,
   ))
+
   val uDashDeps = Def.setting(Seq(
     "org.scala-js" %%% "scalajs-dom" % "2.2.0"
   ))
