@@ -9,7 +9,7 @@ ThisBuild / tlVersionIntroduced := Map("3" -> "1.1.5")
 ThisBuild / licenses := Seq("MIT" -> url("https://opensource.org/licenses/MIT"))
 ThisBuild / startYear := Some(2023)
 
-ThisBuild / tlJdkRelease := Some(8)
+ThisBuild / tlJdkRelease := Some(17)
 
 ThisBuild / tlSonatypeUseLegacyHost := false
 ThisBuild / tlCiReleaseTags := false
