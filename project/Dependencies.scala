@@ -13,6 +13,7 @@ object Dependencies {
   private val http4sVersion = "0.23.26"
   private val circeVersion = "0.14.1"
   private val jawnVersion = "1.5.1"
+  private val doobieVersion = "1.0.0-RC4"
   private val scalaTestVersion = "3.2.16"
   private val spec2Version = "4.19.2"
   private val scalaMockVersion = "5.2.0"
@@ -83,7 +84,14 @@ object Dependencies {
     "org.typelevel" %%% "log4cats-core" % "2.6.0",
     "org.scalacheck" %%% "scalacheck" % "1.17.0" % Test,
   ))
-
+  val doobieDeps = Def.setting(Seq(
+    "org.tpolecat" %% "doobie-core"      % doobieVersion,
+    "org.tpolecat" %% "doobie-h2"        % doobieVersion,
+    "org.tpolecat" %% "doobie-hikari"    % doobieVersion,
+    "org.tpolecat" %% "doobie-postgres"  % doobieVersion,
+    "org.tpolecat" %% "doobie-specs2"    % doobieVersion % Test,
+    "org.tpolecat" %% "doobie-scalatest" % doobieVersion % Test,
+  ))
   val uDashDeps = Def.setting(Seq(
     "org.scala-js" %%% "scalajs-dom" % "2.2.0"
   ))

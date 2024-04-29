@@ -56,6 +56,14 @@ lazy val http4sSettings = Seq(
   libraryDependencies ++= Dependencies.munitDeps.value,
 )
 
+lazy val doobieSettings = Seq(
+  name := "catculator",
+  moduleName := "catculator-doobie",
+  libraryDependencies ++= Dependencies.catsDeps.value,
+  libraryDependencies ++= Dependencies.doobieDeps.value,
+  libraryDependencies ++= Dependencies.specs2Deps.value,
+)
+
 val core =
   crossProject(NativePlatform, JSPlatform, JVMPlatform)
     .crossType(CrossType.Pure)
@@ -76,6 +84,19 @@ val http4s =
     .nativeSettings(coreNativeSettings)
     .settings(
       mainClass := Some("pl.writeonly.catculator.http4s.Main"),
+      Compile / run / fork := true,
+    )
+
+val doobie =
+  crossProject(JVMPlatform)
+    .withoutSuffixFor(JVMPlatform)
+    .crossType(CrossType.Pure)
+    .in(file("catculator-doobie"))
+    .aggregate(http4s)
+    .settings(doobieSettings)
+    .jvmSettings(coreJvmSettings)
+    .settings(
+      mainClass := Some("pl.writeonly.catculator.doobie.Main"),
       Compile / run / fork := true,
     )
 
