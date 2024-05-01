@@ -30,6 +30,7 @@ lazy val coreSettings = Seq(
 
 val coreJvmSettings = Seq(
   Test / fork := true,
+  Compile / run / fork := true,
 )
 
 val coreJsSettings = Seq(
@@ -84,7 +85,6 @@ val http4s =
     .nativeSettings(coreNativeSettings)
     .settings(
       mainClass := Some("pl.writeonly.catculator.http4s.Main"),
-      Compile / run / fork := true,
     )
 
 val doobie =
@@ -97,7 +97,6 @@ val doobie =
     .jvmSettings(coreJvmSettings)
     .settings(
       mainClass := Some("pl.writeonly.catculator.doobie.Main"),
-      Compile / run / fork := true,
     )
 
 lazy val udash =
