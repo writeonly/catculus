@@ -4,6 +4,21 @@ import cats.data.NonEmptyList
 import pl.writeonly.catculator.core.Extras.fix
 import spire.math.Natural
 
+enum Lambda:
+  case Com(c: Combinator)
+  case Var(name: String)
+  case Abs(param: String, body: Lambda)
+  case App(f: Lambda, x: Lambda)
+  case Let(name: String, expression: Lambda, body: Lambda)
+  case MultiAbs(params: List[String], body: Lambda)
+  case MultiApp(fs: NonEmptyList[Lambda])
+  case MultiLet(ps: NonEmptyList[(String, Lambda)], body: Lambda)
+  case LocalScope(xs: NonEmptyList[Lambda])
+  case NilList(xs: List[Lambda])
+  case CharStr(s: String)
+  case NatNum(n: Natural)
+  case IntNum(s: Sign, n: Natural)
+
 object Lambda {
 
   def generateParams(params: List[String]): String = params
@@ -39,21 +54,4 @@ object Lambda {
 
   def intNumFromString(sing: Sign, s: String): Lambda = IntNum(sing, Natural(s))
 
-  final case class Com(c: Combinator) extends Lambda
-  final case class Var(name: String) extends Lambda
-  final case class Abs(param: String, body: Lambda) extends Lambda
-  final case class App(f: Lambda, x: Lambda) extends Lambda
-  final case class Let(name: String, expression: Lambda, body: Lambda)
-      extends Lambda
-  final case class MultiAbs(params: List[String], body: Lambda) extends Lambda
-  final case class MultiApp(fs: NonEmptyList[Lambda]) extends Lambda
-  final case class MultiLet(ps: NonEmptyList[(String, Lambda)], body: Lambda)
-      extends Lambda
-  final case class LocalScope(xs: NonEmptyList[Lambda]) extends Lambda
-  final case class NilList(xs: List[Lambda]) extends Lambda
-  final case class CharStr(s: String) extends Lambda
-  final case class NatNum(n: Natural) extends Lambda
-  final case class IntNum(s: Sign, n: Natural) extends Lambda
 }
-
-sealed trait Lambda

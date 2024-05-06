@@ -2,6 +2,11 @@ package pl.writeonly.catculator.core.adt.calculus
 
 import pl.writeonly.catculator.core.adt.tree.*
 
+enum Combinator:
+  case S
+  case K
+  case I
+
 object Combinator {
 
   type CombinatorT = Tree[Combinator]
@@ -17,10 +22,4 @@ object Combinator {
   }
 
   def generateC(c: Combinator): String = c.toString
-
-  case object S extends Combinator
-  case object K extends Combinator
-  case object I extends Combinator
 }
-
-sealed trait Combinator
