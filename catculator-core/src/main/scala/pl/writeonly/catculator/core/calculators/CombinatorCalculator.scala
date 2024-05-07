@@ -6,7 +6,7 @@ import pl.writeonly.catculator.core.adt.tree.BinaryTree.Node
 
 object CombinatorCalculator {
 
-  def calculate(c: CombinatorBT) = c match {
+  def calculate(c: CombinatorBT): Unit = c match {
     case Node(f, x) =>
     case Leaf(a)    =>
   }

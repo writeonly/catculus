@@ -12,14 +12,18 @@ object Combinator {
   type CombinatorT = Tree[Combinator]
   type CombinatorBT = BinaryTree[Combinator]
 
-  def generateT(tree: CombinatorT): String = tree match {
-    case Tree.Leaf(a) => generateC(a)
-    case Tree.Node(a) => s"(${a.map(generateT).toList.mkString(" ")})"
-  }
-  def generateBT(tree: CombinatorBT): String = tree match {
-    case BinaryTree.Leaf(a)    => generateC(a)
-    case BinaryTree.Node(a, b) => s"`${generateBT(a)} ${generateBT(b)}"
-  }
+  extension (self: CombinatorT)
+    def generateT: String = self match {
+      case Tree.Leaf(a) => a.generateC
+      case Tree.Node(a) => s"(${a.map(_.generateT).toList.mkString(" ")})"
+    }
 
-  def generateC(c: Combinator): String = c.toString
+  extension (self: CombinatorBT)
+    def generateBT: String = self match {
+      case BinaryTree.Leaf(a)    => a.generateC
+      case BinaryTree.Node(a, b) => s"`${a.generateBT} ${b.generateBT}"
+    }
+
+  extension (self: Combinator)
+    def generateC: String = self.toString
 }

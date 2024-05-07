@@ -41,9 +41,10 @@ class SugarReducer(config: LambdaConfig) {
   private def reduceApps(l: NonEmptyList[Lambda]): Lambda =
     foldNonEmpty(l)(App.apply)
 
-  def reduceLets(ps: NonEmptyList[(String, Lambda)], body: Lambda) = MultiApp(
-    NonEmptyList(MultiAbs(ps.map(_._1).toList, body), ps.map(_._2).toList),
-  )
+  def reduceLets(ps: NonEmptyList[(String, Lambda)], body: Lambda): Lambda =
+    MultiApp(
+      NonEmptyList(MultiAbs(ps.map(_._1).toList, body), ps.map(_._2).toList),
+    )
 
   private def reduceNilList(xs: List[Lambda]): Lambda = xs
     .foldRight(config.nilVariable)(config.wrapAppVireoApp)

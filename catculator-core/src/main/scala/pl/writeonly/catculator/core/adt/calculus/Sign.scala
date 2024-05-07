@@ -5,9 +5,9 @@ enum Sign:
   case Minus
 
 object Sign {
-
-  def generate(s: Sign): String = s match {
-    case Plus  => "+"
-    case Minus => "-"
-  }
+  extension (self: Sign)
+    def generate: String = self match {
+      case Plus  => "+"
+      case Minus => "-"
+    }
 }
