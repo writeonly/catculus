@@ -15,7 +15,7 @@ object InputEncoder {
       },
   )
 
-  private def encodeInput(input: List[Natural]): CombinatorBT = input
+  def encodeInput(input: List[Natural]): CombinatorBT = input
     .foldRight(falseCom) { case (n, l) =>
       cons(church(n), l)
     }
