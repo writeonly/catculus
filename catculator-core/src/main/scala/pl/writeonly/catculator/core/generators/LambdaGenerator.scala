@@ -1,12 +1,12 @@
 package pl.writeonly.catculator.core.generators
 
-import pl.writeonly.catculator.core.LambdaConfig.*
+import pl.writeonly.catculator.core.LambdaConfig._
 import pl.writeonly.catculator.core.adt.calculus.Combinator
-import pl.writeonly.catculator.core.adt.calculus.Combinator.*
+import pl.writeonly.catculator.core.adt.calculus.Combinator._
 import pl.writeonly.catculator.core.adt.calculus.Lambda
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
 import pl.writeonly.catculator.core.adt.calculus.Sign
-import pl.writeonly.catculator.core.reducer.SugarReducer.*
+import pl.writeonly.catculator.core.reducers.SugarReducer._
 
 object LambdaGenerator {
   def generate(l: Lambda): String = l match {

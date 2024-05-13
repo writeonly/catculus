@@ -1,15 +1,15 @@
-package pl.writeonly.catculator.core.reducer
+package pl.writeonly.catculator.core.reducers
 
 import cats.data.NonEmptyList
 import pl.writeonly.catculator.core.Extras.foldNonEmpty
 import pl.writeonly.catculator.core.Extras.ifElse
 import pl.writeonly.catculator.core.LambdaConfig
 import pl.writeonly.catculator.core.adt.calculus
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
-import pl.writeonly.catculator.core.adt.calculus.Sign.*
-import pl.writeonly.catculator.core.adt.calculus.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.calculus.Sign._
+import pl.writeonly.catculator.core.adt.calculus._
 import spire.math.Natural.End
-import spire.math.*
+import spire.math._
 
 object SugarReducer {
   val haskellSugarReducer: SugarReducer = SugarReducer(LambdaConfig.haskellConfig)

@@ -4,12 +4,12 @@ import cats.parse.Numbers.digits
 import cats.parse.strings.Json.delimited.parser as jsonString
 import cats.parse.{Parser => P}
 import cats.parse.{Parser0 => P0}
-import cats.syntax.all.*
+import cats.syntax.all._
 import pl.writeonly.catculator.core.adt.calculus
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
-import pl.writeonly.catculator.core.adt.calculus.Sign.*
-import pl.writeonly.catculator.core.adt.calculus.*
-import pl.writeonly.catculator.core.parsers.ParserUtil.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.calculus.Sign._
+import pl.writeonly.catculator.core.adt.calculus._
+import pl.writeonly.catculator.core.parsers.ParserUtil._
 
 object LambdaParser {
   private val identifierStart: P[Char] = P.charWhere { c =>

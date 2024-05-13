@@ -1,17 +1,17 @@
-package pl.writeonly.catculator.core.adt.calculus
+package pl.writeonly.catculator.core.parsers
 
 import mouse.all.anySyntaxMouse
-import org.scalatest.prop.*
-import pl.writeonly.catculator.core.LambdaConfig.*
+import org.scalatest.prop._
+import pl.writeonly.catculator.core.LambdaConfig._
 import pl.writeonly.catculator.core.TableDrivenPropertySpec
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
 import pl.writeonly.catculator.core.generators.HaskellGenerator
 import pl.writeonly.catculator.core.parsers.HaskellParser
-import pl.writeonly.catculator.core.reducer.AbstractionReducer.reduceAbstraction
-import pl.writeonly.catculator.core.reducer.FunctionReducer
-import pl.writeonly.catculator.core.reducer.FunctionReducer.*
-import pl.writeonly.catculator.core.reducer.LambdaReducer.toCombinatorBT
-import pl.writeonly.catculator.core.reducer.SugarReducer.*
+import pl.writeonly.catculator.core.reducers.AbstractionReducer.reduceAbstraction
+import pl.writeonly.catculator.core.reducers.FunctionReducer
+import pl.writeonly.catculator.core.reducers.FunctionReducer._
+import pl.writeonly.catculator.core.reducers.LambdaReducer.toCombinatorBT
+import pl.writeonly.catculator.core.reducers.SugarReducer._
 
 import scala.language.postfixOps
 

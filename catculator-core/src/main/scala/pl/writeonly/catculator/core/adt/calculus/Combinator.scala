@@ -1,6 +1,6 @@
 package pl.writeonly.catculator.core.adt.calculus
 
-import pl.writeonly.catculator.core.adt.tree.*
+import pl.writeonly.catculator.core.adt.tree._
 
 enum Combinator:
   case S

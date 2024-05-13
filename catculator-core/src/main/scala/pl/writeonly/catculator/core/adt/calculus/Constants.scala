@@ -1,7 +1,7 @@
 package pl.writeonly.catculator.core.adt.calculus
 
 import pl.writeonly.catculator.core.adt.calculus.Combinator.CombinatorBT
-import pl.writeonly.catculator.core.adt.tree.BinaryTree.*
+import pl.writeonly.catculator.core.adt.tree.BinaryTree._
 
 object Constants {
   val sCom: CombinatorBT = com(Combinator.S)

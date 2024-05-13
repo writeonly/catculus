@@ -1,8 +1,8 @@
 package pl.writeonly.catculator.core.adt.calculus
 
-import pl.writeonly.catculator.core.adt.calculus.Combinator.*
-import pl.writeonly.catculator.core.adt.calculus.Constants.*
-import pl.writeonly.catculator.core.adt.tree.BinaryTree.*
+import pl.writeonly.catculator.core.adt.calculus.Combinator._
+import pl.writeonly.catculator.core.adt.calculus.Constants._
+import pl.writeonly.catculator.core.adt.tree.BinaryTree._
 
 import pl.writeonly.catculator.core.TableDrivenPropertySpec
 

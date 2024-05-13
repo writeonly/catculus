@@ -1,8 +1,8 @@
-package pl.writeonly.catculator.core.reducer
+package pl.writeonly.catculator.core.reducers
 
 import pl.writeonly.catculator.core.LambdaConfig
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
-import pl.writeonly.catculator.core.adt.calculus.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.calculus._
 
 import scala.language.postfixOps
 

@@ -2,7 +2,7 @@ package pl.writeonly.catculator.core.adt.calculus
 
 import cats.implicits.catsSyntaxEq
 import pl.writeonly.catculator.core.adt.calculus.Combinator.CombinatorBT
-import pl.writeonly.catculator.core.adt.calculus.Constants.*
+import pl.writeonly.catculator.core.adt.calculus.Constants._
 import spire.math.Natural
 
 object InputEncoder {

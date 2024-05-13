@@ -5,10 +5,10 @@ import cats.parse.Numbers.digits
 import cats.parse.Parser.Expectation
 import cats.parse.strings.Json.delimited.parser as jsonString
 import cats.parse.Parser as P
-import cats.syntax.all.*
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
-import pl.writeonly.catculator.core.adt.calculus.*
-import pl.writeonly.catculator.core.parsers.ParserUtil.*
+import cats.syntax.all._
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.calculus._
+import pl.writeonly.catculator.core.parsers.ParserUtil._
 
 object HaskellParser {
 

@@ -1,9 +1,9 @@
-package pl.writeonly.catculator.core.reducer
+package pl.writeonly.catculator.core.reducers
 
-import pl.writeonly.catculator.core.adt.calculus.Combinator.*
+import pl.writeonly.catculator.core.adt.calculus.Combinator._
 import pl.writeonly.catculator.core.adt.calculus.Lambda
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
-import pl.writeonly.catculator.core.adt.tree.BinaryTree.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
+import pl.writeonly.catculator.core.adt.tree.BinaryTree._
 
 object LambdaReducer {
   def toCombinatorBT(l: Lambda): Either[Lambda, CombinatorBT] = l match {

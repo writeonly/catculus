@@ -3,7 +3,7 @@ package pl.writeonly.catculator.core
 import cats.data.NonEmptyList
 import mouse.all.anySyntaxMouse
 import pl.writeonly.catculator.core.adt.calculus.Lambda
-import pl.writeonly.catculator.core.adt.calculus.Lambda.*
+import pl.writeonly.catculator.core.adt.calculus.Lambda._
 
 object LambdaConfig {
   val haskellConfig: LambdaConfig = LambdaConfig(
