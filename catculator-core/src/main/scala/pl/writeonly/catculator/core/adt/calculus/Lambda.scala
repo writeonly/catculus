@@ -28,25 +28,21 @@ object Lambda {
     .mkString
 
   // I know it is crazy, but I wanted to check it is possible
-  private val isOnlyCombinatorStep: (Lambda => Boolean) => Lambda => Boolean =
-    rec => {
-      case Com(_)    => true
-      case App(f, g) => rec(f) && rec(g)
-      case _         => false
-    }
+  private val isOnlyCombinatorStep: (Lambda => Boolean) => Lambda => Boolean = rec => {
+    case Com(_)    => true
+    case App(f, g) => rec(f) && rec(g)
+    case _         => false
+  }
 
   // I know it is crazy, but I wanted to check it is possible
   val isOnlyCombinator: Lambda => Boolean = fix(isOnlyCombinatorStep)
 
   def let1(t: (String, Lambda), body: Lambda): Lambda = Let(t._1, t._2, body)
 
-  def multi(params: List[String], body: NonEmptyList[Lambda]): Lambda =
-    MultiAbs(params, MultiApp(body))
+  def multi(params: List[String], body: NonEmptyList[Lambda]): Lambda = MultiAbs(params, MultiApp(body))
 
-  def multi1(head: Lambda, tail: List[Lambda]): Lambda =
-    MultiApp(NonEmptyList(head, tail))
-  def local1(head: Lambda, tail: List[Lambda]): Lambda =
-    LocalScope(NonEmptyList(head, tail))
+  def multi1(head: Lambda, tail: List[Lambda]): Lambda = MultiApp(NonEmptyList(head, tail))
+  def local1(head: Lambda, tail: List[Lambda]): Lambda = LocalScope(NonEmptyList(head, tail))
 
   def natNumFromString(s: String): Lambda = NatNum(Natural(s))
 

@@ -15,13 +15,11 @@ object InputEncoder {
       },
   )
 
-  def encodeInput(input: List[Natural]): CombinatorBT = input
-    .foldRight(falseCom) { case (n, l) =>
-      cons(church(n), l)
-    }
+  def encodeInput(input: List[Natural]): CombinatorBT = input.foldRight(falseCom) { case (n, l) =>
+    cons(church(n), l)
+  }
 
-  def cons(a: CombinatorBT, b: CombinatorBT): CombinatorBT =
-    app3(sCom, Constants.app3SI(appK(a)), appK(b))
+  def cons(a: CombinatorBT, b: CombinatorBT): CombinatorBT = app3(sCom, Constants.app3SI(appK(a)), appK(b))
 
   def church(n: Natural): CombinatorBT = n.toBigInt match {
     case n if n === BigInt(0) => falseCom

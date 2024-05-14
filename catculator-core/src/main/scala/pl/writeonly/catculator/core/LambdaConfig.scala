@@ -6,24 +6,11 @@ import pl.writeonly.catculator.core.adt.calculus.Lambda
 import pl.writeonly.catculator.core.adt.calculus.Lambda._
 
 object LambdaConfig {
-  val haskellConfig: LambdaConfig = LambdaConfig(
-    apply = "apply",
-    pair = "pair",
-    nil = "nil",
-    succ = "succ",
-    zero = "zero",
-  )
-  val lambdaConfig: LambdaConfig =
-    LambdaConfig(apply = ";", pair = ",", nil = ".", succ = ":", zero = "0")
+  val haskellConfig: LambdaConfig = LambdaConfig(apply = "apply", pair = "pair", nil = "nil", succ = "succ", zero = "zero")
+  val lambdaConfig: LambdaConfig = LambdaConfig(apply = ";", pair = ",", nil = ".", succ = ":", zero = "0")
 }
 
-case class LambdaConfig(
-  apply: String,
-  pair: String,
-  nil: String,
-  succ: String,
-  zero: String,
-) {
+case class LambdaConfig(apply: String, pair: String, nil: String, succ: String, zero: String) {
 
   val thrushVariable: Var = Var(apply)
   val vireoVariable: Lambda = Var(pair)
@@ -40,17 +27,13 @@ case class LambdaConfig(
     l |> appAppAbs(applyBody, applyBody, apply)
   }
 
-  def appAppAbs(l1: Lambda, l2: Lambda, name: String)(l3: Lambda): Lambda =
-    App(l1, App(l2, Abs(name, l3)))
+  def appAppAbs(l1: Lambda, l2: Lambda, name: String)(l3: Lambda): Lambda = App(l1, App(l2, Abs(name, l3)))
 
-  def wrapAppThrush(l1: Lambda, name: String)(l2: Lambda): Lambda =
-    appAppAbs(thrushVariable, l1, name)(l2)
+  def wrapAppThrush(l1: Lambda, name: String)(l2: Lambda): Lambda = appAppAbs(thrushVariable, l1, name)(l2)
 
-  def reThrush(oldName: String, newName: String)(l: Lambda): Lambda =
-    wrapAppThrush(Var(oldName), newName)(l)
+  def reThrush(oldName: String, newName: String)(l: Lambda): Lambda = wrapAppThrush(Var(oldName), newName)(l)
 
-  def wrapAppVireoApp(l1: Lambda, l2: Lambda): Lambda =
-    App(App(vireoVariable, l1), l2)
+  def wrapAppVireoApp(l1: Lambda, l2: Lambda): Lambda = App(App(vireoVariable, l1), l2)
 
   def appSuccVariable(l: Lambda): Lambda = App(succVariable, l)
 }

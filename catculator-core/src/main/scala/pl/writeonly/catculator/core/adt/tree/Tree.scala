@@ -7,6 +7,5 @@ enum Tree[A]:
   case Node(children: NonEmptyList[Tree[A]])
 
 object Tree {
-  def node[A](head: Tree[A], tail: Tree[A]*): Tree[A] =
-    Node(NonEmptyList(head, tail.toList))
+  def node[A](head: Tree[A], tail: Tree[A]*): Tree[A] = Node(NonEmptyList(head, tail.toList))
 }

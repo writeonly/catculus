@@ -19,8 +19,7 @@ object LambdaParser {
     c.isLetterOrDigit || c === '_'
   }
 
-  val identifier: P[String] =
-    symbol((identifierStart ~ identifierContinue.rep0).string)
+  val identifier: P[String] = symbol((identifierStart ~ identifierContinue.rep0).string)
 
   // format: off
   val lambda: P[Lambda] = P.defer(
@@ -38,26 +37,19 @@ object LambdaParser {
 
   val variable: P[Lambda] = identifier.map(Var.apply)
 
-  val abstraction: P[Lambda] = (charSymbol('\\') *> identifier ~ lambda)
-    .map(Abs.apply)
+  val abstraction: P[Lambda] = (charSymbol('\\') *> identifier ~ lambda).map(Abs.apply)
 
-  val application: P[Lambda] = (charSymbol('`') *> lambda ~ lambda)
-    .map(App.apply)
+  val application: P[Lambda] = (charSymbol('`') *> lambda ~ lambda).map(App.apply)
 
-  val mautiApplicationChildren: P[Lambda] = (lambda ~ lambda.rep0)
-    .map((multi1 _).tupled)
+  val mautiApplicationChildren: P[Lambda] = (lambda ~ lambda.rep0).map((multi1 _).tupled)
 
-  val multiApplication: P[Lambda] =
-    charSymbol('(') *> mautiApplicationChildren <* charSymbol(')')
+  val multiApplication: P[Lambda] = charSymbol('(') *> mautiApplicationChildren <* charSymbol(')')
 
-  val localScopeChildren: P[Lambda] = (lambda ~ lambda.rep0)
-    .map((local1 _).tupled)
+  val localScopeChildren: P[Lambda] = (lambda ~ lambda.rep0).map((local1 _).tupled)
 
-  val localScope: P[Lambda] = charSymbol('{') *> localScopeChildren <*
-    charSymbol('}')
+  val localScope: P[Lambda] = charSymbol('{') *> localScopeChildren <* charSymbol('}')
 
-  val nilList: P[Lambda] = charSymbol('[') *> lambda.rep0.map(NilList.apply) <*
-    charSymbol(']')
+  val nilList: P[Lambda] = charSymbol('[') *> lambda.rep0.map(NilList.apply) <* charSymbol(']')
 
   val charStr: P[Lambda] = jsonString.map(CharStr.apply)
 

@@ -136,26 +136,14 @@ class HaskellSpec extends TableDrivenPropertySpec {
     (HelloWorld2, "`apply `0 \\const `apply `1 \\main main"),
     (HelloWorld3, "`apply `\\a \\b (a) \\const `apply `0 \\main main"),
     (HelloWorld4, "`apply `\\a \\b (a) \\const `apply `const \\main main"),
-    (
-      HelloWorld5,
-      "`apply `\\a \\b (a) \\const `apply `(const const) \\main main",
-    ),
+    (HelloWorld5, "`apply `\\a \\b (a) \\const `apply `(const const) \\main main"),
   )
 
-  val programs: TableFor3[String, String, String] = Table(
-    ("function", "input", "output"),
-    (Empty, "", ""),
-    (HelloWorld, "", ""),
-    (Factorial, "", ""),
-  )
+  val programs: TableFor3[String, String, String] = Table(("function", "input", "output"), (Empty, "", ""), (HelloWorld, "", ""), (Factorial, "", ""))
 
   it should "parse sinpleFunctions and save lambda" in {
     forAll(simpleFunctions) { (function, lambda) =>
-      HaskellParser
-        .parseFunction(function)
-        .map(_.lambda)
-        .map(HaskellGenerator.generate)
-        .value shouldBe lambda
+      HaskellParser.parseFunction(function).map(_.lambda).map(HaskellGenerator.generate).value shouldBe lambda
     }
   }
 

@@ -35,22 +35,15 @@ class SugarReducer(config: LambdaConfig) {
     case IntNum(s, n)    => reduceIntNum(s, n)
   }
 
-  private def reduceAbss(params: List[String], body: Lambda): Lambda = params
-    .foldRight(body)(Abs.apply)
+  private def reduceAbss(params: List[String], body: Lambda): Lambda = params.foldRight(body)(Abs.apply)
 
-  private def reduceApps(l: NonEmptyList[Lambda]): Lambda =
-    foldNonEmpty(l)(App.apply)
+  private def reduceApps(l: NonEmptyList[Lambda]): Lambda = foldNonEmpty(l)(App.apply)
 
-  def reduceLets(ps: NonEmptyList[(String, Lambda)], body: Lambda): Lambda =
-    MultiApp(
-      NonEmptyList(MultiAbs(ps.map(_._1).toList, body), ps.map(_._2).toList),
-    )
+  def reduceLets(ps: NonEmptyList[(String, Lambda)], body: Lambda): Lambda = MultiApp(NonEmptyList(MultiAbs(ps.map(_._1).toList, body), ps.map(_._2).toList))
 
-  private def reduceNilList(xs: List[Lambda]): Lambda = xs
-    .foldRight(config.nilVariable)(config.wrapAppVireoApp)
+  private def reduceNilList(xs: List[Lambda]): Lambda = xs.foldRight(config.nilVariable)(config.wrapAppVireoApp)
 
-  private def reduceCharStr(s: String): Lambda =
-    reduceNilList(nilListFromCharStr(s))
+  private def reduceCharStr(s: String): Lambda = reduceNilList(nilListFromCharStr(s))
 
   private def nilListFromCharStr(s: String): List[Lambda] = s
     .toList
@@ -61,12 +54,9 @@ class SugarReducer(config: LambdaConfig) {
       List(config.vireoVariable, l)
     }
 
-  private def reduceNatNum(n: Natural): Lambda = ifElse(n.isZero)(
-    config.zeroVariable,
-  )(config.appSuccVariable(reduceNatNum(n - UInt(1))))
+  private def reduceNatNum(n: Natural): Lambda = ifElse(n.isZero)(config.zeroVariable)(config.appSuccVariable(reduceNatNum(n - UInt(1))))
 
-  private def reduceIntNum(s: Sign, n: Natural): Lambda = config
-    .wrapAppVireoApp(reduceSign(s), reduceNatNum(n))
+  private def reduceIntNum(s: Sign, n: Natural): Lambda = config.wrapAppVireoApp(reduceSign(s), reduceNatNum(n))
 
   private def reduceSign(s: Sign): Lambda = s match {
     case Plus  => config.falseVariable

@@ -18,16 +18,8 @@ class LambdaSpec extends TableDrivenPropertySpec {
     ("`a a", App(Var("a"), Var("a")), "`a a"),
     ("\\a `a a", Abs("a", App(Var("a"), Var("a"))), "``S I I"),
     ("\\a \\a a", Abs("a", Abs("a", Var("a"))), "`K I"),
-    (
-      "\\a \\b `a b",
-      Abs("a", Abs("b", App(Var("a"), Var("b")))),
-      "``S ``S `K S ``S `K K I `K I",
-    ),
-    (
-      "\\a \\b `b a",
-      Abs("a", Abs("b", App(Var("b"), Var("a")))),
-      "``S `K `S I ``S `K K I",
-    ),
+    ("\\a \\b `a b", Abs("a", Abs("b", App(Var("a"), Var("b")))), "``S ``S `K S ``S `K K I `K I"),
+    ("\\a \\b `b a", Abs("a", Abs("b", App(Var("b"), Var("a")))), "``S `K `S I ``S `K K I"),
   )
 
   val advancedLambda: TableFor3[String, String, String] = Table(
@@ -64,40 +56,25 @@ class LambdaSpec extends TableDrivenPropertySpec {
 
   it should "compile basic Lambda" in {
     forAll(basicLambda) { (lambda, _, combinators) =>
-      LambdaParser
-        .parse(lambda)
-        .map(lambdaSugarReducer.reduceSugar)
-        .map(reduceAbstraction)
-        .map(LambdaGenerator.generate)
-        .value shouldBe combinators
+      LambdaParser.parse(lambda).map(lambdaSugarReducer.reduceSugar).map(reduceAbstraction).map(LambdaGenerator.generate).value shouldBe combinators
     }
   }
 
   it should "parse advanced Lambda" in {
     forAll(advancedLambda) { (lambda, _, _) =>
-      LambdaParser.parse(lambda).map(LambdaGenerator.generate).value shouldBe
-        lambda
+      LambdaParser.parse(lambda).map(LambdaGenerator.generate).value shouldBe lambda
     }
   }
 
   it should "desugar advanced Lambda" in {
     forAll(advancedLambda) { (lambda, desugared, _) =>
-      LambdaParser
-        .parse(lambda)
-        .map(lambdaSugarReducer.reduceSugar)
-        .map(LambdaGenerator.generate)
-        .value shouldBe desugared
+      LambdaParser.parse(lambda).map(lambdaSugarReducer.reduceSugar).map(LambdaGenerator.generate).value shouldBe desugared
     }
   }
 
   it should "compile advanced Lambda" in {
     forAll(advancedLambda) { (sugar, _, combinators) =>
-      LambdaParser
-        .parse(sugar)
-        .map(lambdaSugarReducer.reduceSugar)
-        .map(reduceAbstraction)
-        .map(LambdaGenerator.generate)
-        .value shouldBe combinators
+      LambdaParser.parse(sugar).map(lambdaSugarReducer.reduceSugar).map(reduceAbstraction).map(LambdaGenerator.generate).value shouldBe combinators
     }
   }
 }

@@ -19,8 +19,7 @@ object HaskellParser {
     c.isLetterOrDigit || c === '_'
   }
 
-  private val identifier: P[String] =
-    horizontalSymbol((identifierStart ~ identifierContinue.rep0).string)
+  private val identifier: P[String] = horizontalSymbol((identifierStart ~ identifierContinue.rep0).string)
 
   // format: off
   private val lambda: P[Lambda] = P.defer(
@@ -38,35 +37,25 @@ object HaskellParser {
 
   private val application0: P[Lambda] = lambda.rep.map(MultiApp.apply)
 
-  private val application: P[Lambda] = charSymbol('(') *> application0 <*
-    charHorizontalSymbol(')')
+  private val application: P[Lambda] = charSymbol('(') *> application0 <* charHorizontalSymbol(')')
 
-  private val let: P[Lambda] =
-    (
-      stringSymbol("let") *>
-        ((identifier <* stringSymbol("=")) ~ lambda) ~
-        (stringSymbol("in") *> lambda)
-    ).map(let1)
+  private val let: P[Lambda] = (stringSymbol("let") *> ((identifier <* stringSymbol("=")) ~ lambda) ~ (stringSymbol("in") *> lambda)).map(let1)
 
-  private val abstraction0 = charSymbol('\\') *> identifier.rep0 <*
-    stringSymbol("->")
+  private val abstraction0 = charSymbol('\\') *> identifier.rep0 <* stringSymbol("->")
 
-  private val abstraction: P[Lambda] = (abstraction0 ~ application0)
-    .map(MultiAbs.apply)
+  private val abstraction: P[Lambda] = (abstraction0 ~ application0).map(MultiAbs.apply)
 
   val charStr: P[Lambda] = horizontalSymbol(jsonString.map(CharStr.apply))
 
   private val apostrophe = P.char('\'')
 
-  val char: P[Lambda] = horizontalSymbol(apostrophe *> P.anyChar <* apostrophe)
-    .map { c =>
-      natNumFromLong(c.toLong)
-    }
+  val char: P[Lambda] = horizontalSymbol(apostrophe *> P.anyChar <* apostrophe).map { c =>
+    natNumFromLong(c.toLong)
+  }
 
   val natNum: P[Lambda] = horizontalSymbol(digits.map(natNumFromString))
 
-  private val function: P[Func] =
-    ((identifier <* charSymbol('=')) ~ symbol(lambda)).map(Func.apply)
+  private val function: P[Func] = ((identifier <* charSymbol('=')) ~ symbol(lambda)).map(Func.apply)
 
   private val functionParser: P[Func] = function <* P.end
 
@@ -74,8 +63,7 @@ object HaskellParser {
 
   val parseFunction: String => Either[P.Error, Func] = functionParser.parseAll
 
-  val parseFunctions: String => Either[P.Error, NonEmptyList[Func]] =
-    functionsParser.parseAll
+  val parseFunctions: String => Either[P.Error, NonEmptyList[Func]] = functionsParser.parseAll
 
   val parse3: String => Either[P.Error, NonEmptyList[Func]] = (s) =>
     parseFunctions(s) match {
