@@ -8,8 +8,8 @@ import spire.math.Natural
 
 class InputEncoderSpec extends TableDrivenPropertySpec {
 
-  private val oneCom = Node(Leaf(S), Node(Node(Leaf(S), Node(Node(Leaf(K), Leaf(S)), Leaf(K))), Node(Leaf(K), Leaf(I))))
-  private val zeroListCom = Node(Leaf(S), Node(Node(Leaf(S), Node(Leaf(I), Node(Leaf(K), Node(Leaf(K), Leaf(I))))), Node(Leaf(K), Node(Leaf(K), Leaf(I)))))
+  private val oneCom = Node(Node(Leaf(S), Node(Node(Leaf(S), Node(Leaf(K), Leaf(S))), Leaf(K))), Node(Leaf(K), Leaf(I)))
+  private val zeroListCom = Node(Node(Leaf(S), Node(Node(Leaf(S), Leaf(I)), Node(Leaf(K), Node(Leaf(K), Leaf(I))))), Node(Leaf(K), Node(Leaf(K), Leaf(I))))
 
   it should "church number" in {
 

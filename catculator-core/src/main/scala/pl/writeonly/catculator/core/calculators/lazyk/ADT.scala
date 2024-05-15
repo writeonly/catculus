@@ -1,8 +1,7 @@
 package pl.writeonly.catculator.core.calculators.lazyk
 
-import pl.writeonly.catculator.core.adt.calculus.Combinator
 import pl.writeonly.catculator.core.adt.calculus.Combinator.CombinatorBT
-import pl.writeonly.catculator.core.adt.calculus.Constants
+import pl.writeonly.catculator.core.adt.calculus._
 import pl.writeonly.catculator.core.adt.tree.BinaryTree
 import pl.writeonly.catculator.core.adt.tree.BinaryTree._
 import spire.math.Natural
@@ -14,8 +13,10 @@ enum ADT:
 
 object ADT {
 
+  type Safe[A] = Either[String, A]
+
   type ADTBT = BinaryTree[ADT]
-  type ADTBTSafe = Either[String, ADTBT]
+  type ADTBTSafe = Safe[ADTBT]
 
   val number0: ADTBT = Leaf(ADT.Num(Natural.zero))
   val number1: ADTBT = Leaf(ADT.Num(Natural.one))

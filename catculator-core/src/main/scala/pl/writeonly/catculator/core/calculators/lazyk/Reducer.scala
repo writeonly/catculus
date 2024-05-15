@@ -1,5 +1,6 @@
 package pl.writeonly.catculator.core.calculators.lazyk
 
+import cats.Applicative
 import pl.writeonly.catculator.core.adt.calculus.Combinator
 import pl.writeonly.catculator.core.adt.calculus.Combinator._
 import pl.writeonly.catculator.core.adt.tree.BinaryTree
@@ -15,12 +16,7 @@ object Reducer {
     case x          => Right(x)
   }
 
-  def applyM(fM: ADTBTSafe, xM: ADTBTSafe): ADTBTSafe =
-    for
-      f <- fM
-      x <- xM
-      r <- apply(f, x)
-    yield r
+  def applyM(f: ADTBTSafe, x: ADTBTSafe): ADTBTSafe = Applicative[Safe[*]].map2(f, x)(apply).flatten
 
   def flippedApply(x: ADTBT, y: ADTBT): ADTBTSafe = apply(y, x)
 
@@ -36,5 +32,4 @@ object Reducer {
     case Leaf(ADT.Num(x)) => Right(Leaf(ADT.Num(x + Natural.one)))
     case _                => Left(s"attempted to apply inc to a non-number $x")
   }
-
 }

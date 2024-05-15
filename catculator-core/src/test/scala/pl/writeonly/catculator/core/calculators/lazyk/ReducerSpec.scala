@@ -1,10 +1,10 @@
 package pl.writeonly.catculator.core.calculators.lazyk
 
 import pl.writeonly.catculator.core.UnitSpec
-import pl.writeonly.catculator.core.adt.calculus.Combinator.*
-import pl.writeonly.catculator.core.adt.tree.BinaryTree.*
-import pl.writeonly.catculator.core.calculators.lazyk.ADT.*
-import pl.writeonly.catculator.core.calculators.lazyk.Reducer.*
+import pl.writeonly.catculator.core.adt.calculus.Combinator._
+import pl.writeonly.catculator.core.adt.tree.BinaryTree._
+import pl.writeonly.catculator.core.calculators.lazyk.ADT._
+import pl.writeonly.catculator.core.calculators.lazyk.Reducer._
 
 class ReducerSpec extends UnitSpec {
   "A Reducer" should {
