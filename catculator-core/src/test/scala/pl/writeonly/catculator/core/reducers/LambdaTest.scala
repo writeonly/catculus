@@ -22,6 +22,7 @@ class LambdaTest extends UnitSpec {
 //        .map(LambdaGenerator.generate)
         .value
       println(lambda)
+      //Abs(n,Abs(f,Abs(x,App(Var(f),App(App(Var(n),Var(f)),Var(x))))))
 //      Abs(n,Abs(f,Abs(x,App(Var(f),App(App(Var(n),Var(f)),Var(x))))))
 
 //      App(App(Com(S),App(Com(K),App(Com(S),App(App(Com(S),App(Com(K),Com(S))),App(App(Com(S),App(Com(K),Com(K))),Com(I)))))),App(App(Com(S),App(App(Com(S),App(Com(K),Com(S))),App(App(Com(S),App(Com(K),App(Com(S),App(Com(K),Com(S))))),App(App(Com(S),App(App(Com(S),App(Com(K),Com(S))),App(App(Com(S),App(Com(K),App(Com(S),App(Com(K),Com(S))))),App(App(Com(S),App(Com(K),App(Com(S),App(Com(K),Com(K))))),App(App(Com(S),App(Com(K),Com(K))),Com(I)))))),App(Com(K),App(App(Com(S),App(Com(K),Com(K))),Com(I))))))),App(Com(K),App(Com(K),Com(I)))))
