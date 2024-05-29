@@ -18,8 +18,8 @@ object Calculator {
 
   def run(program: ADTBT): Iterator[Safe[Natural]] = runWithTerminator(falseVar, program)
 
-  private def runWithTerminator(terminator: ADTBT, combinator: ADTBT): Iterator[Safe[Natural]] =
-    Iterator.unfold[Safe[Natural], (ADTBT, Safe[ADTBT])](terminator, Right(combinator)) { case (t: ADTBT, cM: Safe[ADTBT]) =>
+  private def runWithTerminator(terminator: ADTBT, combinator: ADTBT): Iterator[Safe[Natural]] = Iterator
+    .unfold[Safe[Natural], (ADTBT, Safe[ADTBT])](terminator, Right(combinator)) { case (t: ADTBT, cM: Safe[ADTBT]) =>
       val a = cM.flatMap(realizeWithTrue)
       val s = cM.flatMap(Reducer.flippedApply(t, _))
       Option(a, (t, s))

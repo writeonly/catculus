@@ -13,7 +13,7 @@ class LambdaTest extends UnitSpec {
       lambdaSugarReducer.reduceSugar(i) shouldBe i
     }
 
-    "return argument for Combinator 2" in {
+    "return argument for Combinator building" in {
       val lambdaSource = "\\n \\f \\x (f (n f x))"
       val lambda = LambdaParser
         .parse(lambdaSource)
@@ -21,8 +21,7 @@ class LambdaTest extends UnitSpec {
 //        .map(reduceAbstraction)
 //        .map(LambdaGenerator.generate)
         .value
-      println(lambda)
-      //Abs(n,Abs(f,Abs(x,App(Var(f),App(App(Var(n),Var(f)),Var(x))))))
+      // Abs(n,Abs(f,Abs(x,App(Var(f),App(App(Var(n),Var(f)),Var(x))))))
 //      Abs(n,Abs(f,Abs(x,App(Var(f),App(App(Var(n),Var(f)),Var(x))))))
 
 //      App(App(Com(S),App(Com(K),App(Com(S),App(App(Com(S),App(Com(K),Com(S))),App(App(Com(S),App(Com(K),Com(K))),Com(I)))))),App(App(Com(S),App(App(Com(S),App(Com(K),Com(S))),App(App(Com(S),App(Com(K),App(Com(S),App(Com(K),Com(S))))),App(App(Com(S),App(App(Com(S),App(Com(K),Com(S))),App(App(Com(S),App(Com(K),App(Com(S),App(Com(K),Com(S))))),App(App(Com(S),App(Com(K),App(Com(S),App(Com(K),Com(K))))),App(App(Com(S),App(Com(K),Com(K))),Com(I)))))),App(Com(K),App(App(Com(S),App(Com(K),Com(K))),Com(I))))))),App(Com(K),App(Com(K),Com(I)))))
